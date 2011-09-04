@@ -51,7 +51,9 @@ module.exports = ext.register("ext/chesterfield/chesterfield", {
     
     pushDDoc: function(host, db) {
         
-        var DESIGN = "_id";
+        // Since Node.CouchApp.js apps don't have _id, check for app.js instead 
+        var DESIGN = "app.js"; // "_id";
+        var COUCH_ROOT = "http://localhost:5984";
         console.log("starting push.");
         
         // some *magic* to get the current working directory
@@ -79,7 +81,7 @@ module.exports = ext.register("ext/chesterfield/chesterfield", {
             /* we have a design document */
             if (exists) {
                 
-                var url = "http://127.0.0.1:3001/?command=push&cwd=" + appname + "&args=http://steve:password@localhost:5984/" + appname;
+                var url = "http://127.0.0.1:3001/?command=push&cwd=" + appname + "&args=sandbox/"+appname+"/"+DESIGN+","+COUCH_ROOT+"/" + appname;
 
                 try {
                     var client = new XMLHttpRequest();
@@ -102,8 +104,12 @@ module.exports = ext.register("ext/chesterfield/chesterfield", {
                 if (couchapp_returncode == 0) {
                     console.log("The request succeeded!\n\nThe response representation was:\n\n" + client.responseText);
                     
-                    var appurl = json_res.error.split('\n');
-                    var appurl = appurl[appurl.length -2];
+                    // var appurl = json_res.error.split('\n');
+                    // var appurl = appurl[appurl.length -2];
+                    
+                    // HARDCODE app url for now
+                    var appurl = COUCH_ROOT+"/"+appname+"/_design/app/_rewrite/";
+                    
                     util.alert( "Push", 
                                 "SUCCESS", 
                                 "CouchApp has been pushed successfully.\nView it here: <a target=\"_blank\" href=\"" + appurl + "\">" + appname + "</a>");
