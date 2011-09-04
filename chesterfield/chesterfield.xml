@@ -1,0 +1,40 @@
+<a:application xmlns:a="http://ajax.org/2005/aml">
+	<a:window
+      id        = "winPushConfirm"
+      title     = "Push"
+      icon      = ""
+      center    = "true"
+      render    = "runtime"
+      width     = "512"
+      skin      = "change_photo">
+        <!--<a:hbox align="center" margin="5 10" padding="10">
+            <a:label width="130" textalign="right">Host</a:label>
+            <a:textbox id="txtHost" flex="1" value=""/>
+        </a:hbox>
+        <a:hbox align="center" margin="5 10" padding="10">
+            <a:label width="130" textalign="right">Database</a:label>
+            <a:textbox id="txtDb" flex="1" value=""/>
+        </a:hbox>-->
+        <a:vbox padding="10" edge="15 20 10 20">
+            <h3 class="wheader">Push this app?</h3>
+            <div>Are you sure you would like to push this CouchApp?</div>
+        </a:vbox>
+    
+        <a:vbox>
+            <a:divider skin="hordivider" />
+            <a:hbox pack="end" padding="7" edge="10 10 5 10">
+                <a:button id="btnPush" width="80" default="3" class="ui-btn-green" caption="Push" />
+                <a:button id="btnPushCancel" width="80">Cancel</a:button>
+            </a:hbox>
+        </a:vbox>
+    </a:window>
+
+    <a:bar id="tbChesterfield">
+        <a:divider skin="c9-divider" />
+        <a:button id="btnPushApp" tooltip="Push"
+          icon     = "pushapp.png"
+          onclick  = "require('ext/chesterfield/chesterfield').showPushConfirm()"
+          skin     = "c9-toolbarbutton"
+          disabled = "{stProcessRunning.active and 1}" />
+  </a:bar>
+</a:application>
