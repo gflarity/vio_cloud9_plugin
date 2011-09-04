@@ -4,11 +4,15 @@
  * @copyright 2010, Ajax.org B.V.
  * @license GPLv3 <http://www.gnu.org/licenses/gpl.txt>
  */
-require.def("ext/chesterfield/chesterfield",
-    ["core/ide", "core/ext", "core/util", "ext/filesystem/filesystem", "text!ext/chesterfield/chesterfield.xml"],
-    function(ide, ext, util, fs, markup) {
+ define(function(require, exports, module) {
 
-return ext.register("ext/chesterfield/chesterfield", {
+ var ide    = require("core/ide");
+ var ext    = require("core/ext");
+ var util   = require("core/util");
+ var fs     = require("ext/filesystem/filesystem");
+ var markup = require("text!ext/chesterfield/chesterfield.xml");
+
+module.exports = ext.register("ext/chesterfield/chesterfield", {
     dev     : "vertex.io",
     name    : "Chesterfield",
     alone   : true,
