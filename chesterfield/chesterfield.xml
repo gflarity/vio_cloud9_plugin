@@ -33,6 +33,7 @@
         <a:divider skin="c9-divider" />
         <a:button id="btnPushApp" tooltip="Push"
           icon     = "pushapp.png"
+          caption  = "push"
           onclick  = "require('ext/chesterfield/chesterfield').showPushConfirm()"
           skin     = "c9-toolbarbutton"
           disabled = "{stProcessRunning.active and 1}" />
